@@ -1,0 +1,28 @@
+.video-thumb a:link {
+    position: relative;
+    text-align: center;
+    color: rgba(255, 255, 255, 0); 
+}
+
+
+.jumbotron{
+    border-radius: 0px;
+    -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+}
+
+.centered {
+    position: absolute;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    margin-top: 0px;
+}
+
+.video-thumb a:hover {
+    color: rgba(255, 255, 255, 0.6); 
+}
+
