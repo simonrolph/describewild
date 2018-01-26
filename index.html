@@ -14,7 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    
+
     <!-- font awesome -->
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
 
@@ -31,7 +31,7 @@
                 <a href="#" class="navbar-brand d-flex align-items-center">
             <strong>Wildlife videos</strong>
           </a>
-            </div>
+            </div>Format
         </div>
     </header>
 
@@ -40,36 +40,104 @@
             <div class="container">
                 <h1 class="jumbotron-heading">Unnamed wildlife video project thing</h1>
                 <p class="lead text-muted">Helping wildlife, conservation and ecology film-makers get exposure.</p>
+                <!--
                 <p>
                     <a href="#" class="btn btn-primary my-2">Add your video</a>
                     <a href="#" class="btn btn-secondary my-2">Read the plan</a>
                 </p>
+-->
             </div>
         </section>
-
-            <div class="container">
-                <div class="card-columns">
+        
+        <div class="container" id="vid-filtering">        
+            <div class="form-group">
+                <label for="search">Search for keywords</label>
+                <input type="search" class="form-control search" id="search" placeholder="cornish wildflowers, night jars, naturewatch etc.">
+                <br>
+                <label>Filter by taxonomic groups</label>
+                <div class="btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-light active" id="fil1" taxon="All">
+                        <input type="radio" name="taxons" autocomplete="off" checked> All
+                    </label>             
+                    <label class="btn btn-light" id="fil2" taxon="Plants">
+                        <input type="radio" name="taxons" autocomplete="off" > Plants 
+                    </label>
+                    <label class="btn btn-light" id="fil3" taxon="Birds">
+                        <input type="radio" name="taxons" autocomplete="off" > Birds
+                    </label>
+                    <label class="btn btn-light" id="fil4" taxon="Mammals">
+                        <input type="radio" name="taxons" autocomplete="off" > Mammals 
+                    </label>
+                    <label class="btn btn-light" id="fil5" taxon="Fish">
+                        <input type="radio" name="taxons" autocomplete="off" > Fish 
+                    </label>
+                    <label class="btn btn-light" id="fil6" taxon="Invertebrates">
+                        <input type="radio" name="taxons" autocomplete="off" > Invertebrates 
+                    </label>
+                    <label class="btn btn-light" id="fil7" taxon="Reptiles">
+                        <input type="radio" name="taxons" autocomplete="off" > Reptiles 
+                    </label>
+                    <label class="btn btn-light" id="fil8" taxon="Amphibians">
+                        <input type="radio" name="taxons" autocomplete="off" > Amphibians 
+                    </label>
+                    <label class="btn btn-light" id="fil9" taxon="Fungi and Lichens">
+                        <input type="radio" name="taxons" autocomplete="off" > Fungi and Lichens 
+                    </label>
+                </div>
+                <br>
+                <label>Filter by format</label>
+                <div class="btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-light active" id="2fil1" media="All">
+                        <input type="radio" name="media" autocomplete="off" checked> All
+                    </label>             
+                    <label class="btn btn-light" id="2fil2" media="Video">
+                        <input type="radio" name="media" autocomplete="off" ><i class="fa fa-video-camera" aria-hidden="true"></i> Videos 
+                    </label>
+                    <label class="btn btn-light" id="2fil3" media="Podcast">
+                        <input type="radio" name="media" autocomplete="off" ><i class="fa fa-headphones" aria-hidden="true"></i> Podcasts
+                    </label>
+                </div>
+                <br>
+                <div class="btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-light sort" data-sort="mins">
+                        <input type="checkbox" id="search-by-length" autocomplete="off"> <i class="fa fa-clock-o" aria-hidden="true"></i> Sort by length
+                    </label>
+                </div>
+                
+                
+            </div>
+            <div class="card-columns">
+                
+                <ul class="list list-unstyled">
+                    <li>
                         <div class="card mb-4 box-shadow">
                             <div class="video-thumb">
-                            <a class="vid_link" href="//www.youtube.com/watch?v=YkVsQNUUBvc" data-lity>
-                                <img class="card-img-top img-fluid" src = "https://i1.ytimg.com/vi/YkVsQNUUBvc/mqdefault.jpg">
-                                <div class="centered">
-                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                                </div>
-                            </a>
+                                <a class="vid_link" href="//www.youtube.com/watch?v=YkVsQNUUBvc" data-lity>
+                                        <img class="card-img-top img-fluid" src = "https://i1.ytimg.com/vi/YkVsQNUUBvc/mqdefault.jpg">
+                                        <div class="centered">
+                                            <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                        </div>                                        
+                                </a>
+                                
                             </div>
+                            
+                            
+                            
                             <div class="card-body">
-                                <p><b>Cornish Wildflowers on Rosemullion Head</b> <small>4 mins</small></p>                     
-                                <p>Learn to ID wildflowers on this sunny day on National Trust site Rosemullion head.</p>
-                                 <div class="channel-box">
-                                    <div class="g-ytsubscribe" data-channel="grumpycustard" data-layout="full" data-count="hidden"></div>
+                                
+                                <p hidden class="media">Video</p>
+                                <div class="card-text">
+                                    <p class="vid-title"><b>Cornish Wildflowers on Rosemullion Head</b> </p>
+                                    <p class="subtitle"><small >By  Simon Rolph -  <span class="taxGroups">Plants</span> - <span class="mins">4</span> mins - Published: 10/3/17</small></p>
+                                    <p>Learn to ID wildflowers on this sunny day on National Trust site Rosemullion head.</p>
                                 </div>
                             </div>
                         </div>
-                    
+                    </li>
+                    <li>
                         <div class="card mb-4 box-shadow">
                             <div class="video-thumb">
-                            <a href="//www.youtube.com/watch?v=cx1T2QZOMz0" data-lity>
+                                <a href="//www.youtube.com/watch?v=cx1T2QZOMz0" data-lity>
                                 <img class="card-img-top img-fluid" src = "https://i1.ytimg.com/vi/cx1T2QZOMz0/mqdefault.jpg">
                                 <div class="centered">
                                     <i class="fa fa-play-circle" aria-hidden="true"></i>
@@ -77,69 +145,41 @@
                             </a>
                             </div>
                             <div class="card-body">
-                                <p><b>Searching for Nightjars</b> <small>2 mins</small></p>                     
-                                <p>Join me as I go in search of the Nightjar.</p>
-                                 <div class="channel-box">
-                                    <div class="g-ytsubscribe" data-channelid="UCKonphoukKLblFVFCA_IEfw" data-layout="full" data-count="hidden"></div>
+                                <p hidden class="media">Video</p>
+                                <div class="card-text">
+                                    <p class="vid-title"><b>Searching for Nightjars</b> </p>
+                                    <p class="subtitle"><small >By Billy Heaney -  <span class="taxGroups">Birds</span> - <span class="mins">2</span> mins - Published: 10/3/17</small></p>
+                                    <p>Join me as I go in search of the Nightjar.</p>
                                 </div>
                             </div>
                         </div>
-                    
+                    </li>
+                    <li>
                         <div class="card mb-4 box-shadow">
                             <div class="video-thumb">
-                            <a href="//www.youtube.com/watch?v=7WaqjBS7wBE" data-lity>
+                                <a href="//www.youtube.com/watch?v=7WaqjBS7wBE" data-lity>
                                 <img class="card-img-top img-fluid" src = "https://i1.ytimg.com/vi/7WaqjBS7wBE/mqdefault.jpg">
                                 <div class="centered">
                                     <i class="fa fa-play-circle" aria-hidden="true"></i>
                                 </div>
-                            </a>    
+                            </a>
                             </div>
                             <div class="card-body">
-                                <p><b>NatureWatch S3E1</b> <small>14 mins</small></p>                     
-                                <p>An amazing array of Cornish wildlife including an other-worldly marine mollusk, an adorable mammal, and lots of predatory fish!</p>
-                                 <div class="channel-box">
-                                    <div class="g-ytsubscribe" data-channelid="UC9jigLpGTVUfpBG4f2DXB2w" data-layout="full" data-count="hidden"></div>
+                                <p hidden class="media">Video</p>
+                                <div class="card-text">
+                                    <p class="vid-title"><b>NatureWatch S3 Ep.1</b> </p>
+                                    <p class="subtitle"><small >By NatureWatch -  <span class="taxGroups">Invertebrates, Mammals & Fish</span> - <span class="mins">14</span> mins - Published: 10/3/17</small></p>
+                                    <p>An amazing array of Cornish wildlife including an other-worldly marine mollusk, an adorable mammal, and lots of predatory fish!</p>                                    
+                                </div>
+                                <div class="channel-box">
                                 </div>
                             </div>
                         </div>
-                    
-                        <div class="card mb-4 box-shadow">
-                            <div class="video-thumb">
-                            <a href="//www.youtube.com/watch?v=7WaqjBS7wBE" data-lity>
-                                <img class="card-img-top img-fluid" src = "https://i1.ytimg.com/vi/7WaqjBS7wBE/mqdefault.jpg">
-                                <div class="centered">
-                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                                </div>
-                            </a>    
-                            </div>
-                            <div class="card-body">
-                                <p><b>NatureWatch S3E1</b> <small>14 mins</small></p>                     
-                                <p>An amazing array of Cornish wildlife including an other-worldly marine mollusk, an adorable mammal, and lots of predatory fish!</p>
-                                 <div class="channel-box">
-                                    <div class="g-ytsubscribe" data-channelid="UC9jigLpGTVUfpBG4f2DXB2w" data-layout="full" data-count="hidden"></div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    <div class="card mb-4 box-shadow">
-                            <div class="video-thumb">
-                            <a href="//www.youtube.com/watch?v=7WaqjBS7wBE" data-lity>
-                                <img class="card-img-top img-fluid" src = "https://i1.ytimg.com/vi/7WaqjBS7wBE/mqdefault.jpg">
-                                <div class="centered">
-                                    <i class="fa fa-play-circle" aria-hidden="true"></i>
-                                </div>
-                            </a>    
-                            </div>
-                            <div class="card-body">
-                                <p><b>NatureWatch S3E1</b> <small>14 mins</small></p>                     
-                                <p>An amazing array of Cornish wildlife including an other-worldly marine mollusk, an adorable mammal, and lots of predatory fish!</p>
-                                 <div class="channel-box">
-                                    <div class="g-ytsubscribe" data-channelid="UC9jigLpGTVUfpBG4f2DXB2w" data-layout="full" data-count="hidden"></div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    </div>
+                    </li>
+
+                </ul>
+
+            </div>
         </div>
     </main>
 
@@ -151,6 +191,9 @@
         </div>
     </footer>
 
+    <!-- jquery -->
+    <script src="jquery-3.3.1.min.js"></script>
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -161,10 +204,65 @@
     <script src="lity-2.3.0/vendor/jquery.js"></script>
     <script src="lity-2.3.0/dist/lity.js"></script>
 
-    <!-- jquery -->
-    <script src="jquery-3.3.1.min.js"></script>
+    <!-- list.js -->
+    <script src="list.min.js"></script>
+
     
-    <script src="https://apis.google.com/js/platform.js"></script>
+
+    <script>
+        var options = {
+            valueNames: [
+                'card-text',
+                'taxGroups',
+                'mins',
+                'media'
+            ]
+        };
+
+        var vidFiltering = new List('vid-filtering', options);
+
+        $(document).ready(function() {
+            
+            $("#fil1, #fil2, #fil3, #fil4, #fil5, #fil6, #fil7, #fil8, #fil9").click(function () {
+                
+                taxon = $(this).attr("taxon").toString();
+                                
+                
+                vidFiltering.filter(function(item) {
+                    if (item.values().taxGroups.includes(taxon) || taxon == "All") {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
+
+
+            });        
+        });
+        
+        $(document).ready(function() {
+            
+            $("#2fil1, #2fil2, #2fil3").click(function () {
+                
+                media = $(this).attr("media").toString();
+                                
+                
+                vidFiltering.filter(function(item) {
+                    if (item.values().media == media || media == "All") {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  });
+
+
+            });        
+        });
+        
+    </script>
+    
+<!--    <script src="https://apis.google.com/js/platform.js"></script>-->
+
 
 </body>
 

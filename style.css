@@ -1,6 +1,5 @@
 .video-thumb a:link {
     position: relative;
-    text-align: center;
     color: rgba(255, 255, 255, 0); 
 }
 
@@ -14,6 +13,8 @@
 }
 
 .centered {
+    
+    text-align: center;
     position: absolute;
     top: 47%;
     left: 50%;
@@ -22,7 +23,25 @@
     margin-top: 0px;
 }
 
+
 .video-thumb a:hover {
     color: rgba(255, 255, 255, 0.6); 
+}
+
+
+.card-body{
+    padding:5px 10px 0px 10px;
+}
+
+.vid-title{
+    margin-bottom: 0px;
+}
+
+.subtitle{
+    margin-bottom: 14px;
+}
+
+.mins{
+    margin-top: -20px;
 }
 
