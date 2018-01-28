@@ -1,0 +1,49 @@
+```{r}
+#install.packages("googlesheets")
+library(googlesheets)
+
+#install.packages("tidyverse")
+#install.packages("readr")
+library(tidyverse)
+library("curl")
+library(readr)
+
+gs_ls()
+
+```
+
+
+```{r}
+wildfilm <- gs_title("Wildfilm spreadsheet")
+media_data <- wildfilm %>% gs_read(ws="media")
+
+# make data more readable, add new columns etc
+
+
+
+page <- readLines("~/webprojects/nature_videos/index_template.html")
+page <- paste(page, collapse = '')
+  
+media_template <- gsub(".*START|END.*", "", page)
+page <- gsub( " *\\START.*?\\END *", "insert_medias",page)
+
+medias <- ""
+
+for(i in 1:nrow(media_data)){
+  media_temp <- media_template
+  
+  for (ii in 1:ncol(media_data)){
+    field <- colnames(media_data)[ii]
+    media_temp <- gsub(paste("insert",field,sep = "_"),
+         media_data[i,ii],
+         media_temp)
+  }
+  
+  medias <- paste(medias,media_temp)
+}
+
+page <- gsub("insert_medias",medias,page)
+write(page,file = "~/webprojects/nature_videos/index.html")
+ 
+```
+

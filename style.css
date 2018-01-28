@@ -10,6 +10,7 @@
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
+    background-image: url(images/IMG_6168.JPG);
 }
 
 .centered {
@@ -43,5 +44,11 @@
 
 .mins{
     margin-top: -20px;
+}
+
+#mapid { height: 350px; }
+
+.card:target {
+    background-color: beige;
 }
 
