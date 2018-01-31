@@ -18,7 +18,26 @@ wildfilm <- gs_title("Wildfilm spreadsheet")
 media_data <- wildfilm %>% gs_read(ws="media")
 
 # make data more readable, add new columns etc
+yt_image_template <- c("https://i1.ytimg.com/vi/insert_video_id/mqdefault.jpg")
+yt_media_template <- c("//www.youtube.com/watch?v=insert_video_id")
 
+#videos
+for(i in 1:nrow(media_data)){
+  print(i)
+  if(media_data$format[i] == "V"){
+    media_data$image_url[i] <- gsub("insert_video_id",media_data$video_id[i],yt_image_template)
+    
+    media_data$media_url[i] <- gsub("insert_video_id",media_data$video_id[i],yt_media_template)
+    media_data$media_icon[i] <- "play-circle"
+    media_data$media_type[i] <- "Video"
+  } else if (media_data$format[i] == "P"){
+    media_data$media_icon[i] <- "headphones"
+    media_data$media_type[i] <- "Podcast"
+  } else if (media_data$format[i] == "P"){
+    media_data$media_icon[i] <- "font"
+    media_data$media_type[i] <- "Blog post"
+  }
+}
 
 
 page <- readLines("~/webprojects/nature_videos/index_template.html")

@@ -147,15 +147,16 @@
 
             <div class="card-columns">
 
-                <ul class="list list-unstyled">
+                <ul class="list list-unstyled" id="myList">
                     START
                     <li>
+                        <span class="badge badge-secondary"><i class="fa fa-insert_media_icon" aria-hidden="true"></i> insert_media_type</span> <span class="badge badge-secondary"><span class="mins">insert_length</span> mins</span> <span class="badge badge-secondary"><span class="taxGroups">insert_taxons</span></span>
                         <div class="card mb-4 box-shadow" id="insert_title">
                             <div class="video-thumb">
-                                <a class="vid_link" href="//www.youtube.com/watch?v=insert_video_id" data-lity>
-                                        <img class="card-img-top img-fluid" src = "https://i1.ytimg.com/vi/insert_video_id/mqdefault.jpg">
+                                <a href="insert_media_url" data-lity>
+                                        <img class="card-img-top img-fluid" src = "insert_image_url">
                                         <div class="centered">
-                                            <i class="fa fa-play-circle" aria-hidden="true"></i>
+                                            <i class="fa fa-insert_media_icon" aria-hidden="true"></i>
                                         </div>                                        
                                 </a>
 
@@ -171,7 +172,7 @@
 
                                 <div class="card-text">
                                     <p class="vid-title"><b>insert_title</b> </p>
-                                    <p class="subtitle"><small>By insert_creator_name -  <span class="taxGroups">insert_taxons</span> - <span class="mins">insert_length</span> mins</small></p>
+                                    <p class="subtitle"><small>By insert_creator_name </small></p>
                                     <p>insert_description</p>
                                 </div>
                             </div>
@@ -183,6 +184,9 @@
                 </ul>
 
             </div>
+            <button id="loadMore" type="button" class="btn btn-light btn-block"><i class="fa fa-chevron-down" aria-hidden="true"></i> Show more </button>
+            <br>
+            <!--<div id="showLess">Show less</div>-->
         </div>
     </main>
 
@@ -223,14 +227,13 @@
             return function findMatches(q, cb) {
                 var matches, substringRegex;
 
-                // an array that will be populated with substring matches
+
                 matches = [];
 
-                // regex used to determine if a string contains the substring `q`
+
                 substrRegex = new RegExp(q, 'i');
 
-                // iterate through the pool of strings and for any string that
-                // contains the substring `q`, add it to the `matches` array
+
                 $.each(strs, function(i, str) {
                     if (substrRegex.test(str)) {
                         matches.push(str);
@@ -302,6 +305,18 @@
                 });
 
                 marker.bindPopup("<b>" + latlong[2] + "</b><br>By " + latlong[3] + " - " + latlong[5] + " - " + latlong[6] + 'mins <br><a href="#' + latlong[2] + '"><button type="button" class="btn btn-light btn-sm">Jump to this</button></a>');
+                
+                marker.title = latlong[2];
+                
+                marker.on('mouseover', function(e) {
+                    this.openPopup();
+                    alert(this.title);
+                });
+                marker.on('mouseout', function(e) {
+                    this.closePopup();
+                });
+                
+                
 
                 markersLayer.addLayer(marker);
 
@@ -317,6 +332,38 @@
 
 
     <script>
+        x = 5;
+        size_li = $("#myList li").size();
+
+        function updateloadmore() {
+            nvis = vidFiltering.visibleItems.length;
+            x = 5;
+
+            $('#myList li').not(':lt(' + x + ')').hide();
+            $('#myList li:lt(' + x + ')').show();
+
+            if (nvis <= x) {
+                $('#loadMore').hide()
+            } else {
+                $('#loadMore').show()
+            }
+
+        };
+
+        $('#loadMore').click(function() {
+            x = (x + 50 <= size_li) ? x + 50 : size_li;
+            $('#myList li:lt(' + x + ')').show();
+            if (nvis <= x) {
+                $('#loadMore').hide()
+            } else {
+                $('#loadMore').show()
+            }
+        });
+        
+        $(document).ready(function () {
+            updateloadmore()            
+        });
+        
         var options = {
             valueNames: [
                 'card-text',
@@ -325,6 +372,8 @@
                 'media'
             ]
         };
+        
+        
 
         var vidFiltering = new List('vid-filtering', options);
 
@@ -358,7 +407,9 @@
         });
 
 
-        vidFiltering.on('updated', updatemap)
+        vidFiltering.on('updated', updatemap);
+        
+        vidFiltering.on('updated', updateloadmore);
     </script>
 
     <!-- youtube subscribe button javascript (doesn't work if using list.js)    <script src="https://apis.google.com/js/platform.js"></script>-->

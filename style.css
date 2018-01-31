@@ -52,3 +52,7 @@
     background-color: beige;
 }
 
+
+
+#myList li{ display:none;
+}
