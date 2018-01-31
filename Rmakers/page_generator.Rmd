@@ -1,10 +1,11 @@
 ```{r}
-#install.packages("googlesheets")
+install.packages("googlesheets")
 library(googlesheets)
 
-#install.packages("tidyverse")
-#install.packages("readr")
+install.packages("tidyverse")
+install.packages("readr")
 library(tidyverse)
+library(dplyr)
 library("curl")
 library(readr)
 
@@ -14,8 +15,10 @@ gs_ls()
 
 
 ```{r}
+# read in all the google sheets data
 wildfilm <- gs_title("Wildfilm spreadsheet")
 media_data <- wildfilm %>% gs_read(ws="media")
+species_data <- na.omit(wildfilm %>% gs_read(ws="species"))
 
 # make data more readable, add new columns etc
 yt_image_template <- c("https://i1.ytimg.com/vi/insert_video_id/mqdefault.jpg")
@@ -40,7 +43,7 @@ for(i in 1:nrow(media_data)){
 }
 
 
-page <- readLines("~/webprojects/nature_videos/index_template.html")
+page <- readLines("~/describewild/index_template.html")
 page <- paste(page, collapse = '')
   
 media_template <- gsub(".*START|END.*", "", page)
@@ -61,8 +64,26 @@ for(i in 1:nrow(media_data)){
   medias <- paste(medias,media_temp)
 }
 
+# species
+species_list <- ""
+
+for (i in 1:nrow(species_data)){
+  species_list <- paste(species_list,'"',species_data$common_name[i]," (",species_data$scientific_name[i],')"',sep = "")
+  
+  if (i < nrow(species_data)){
+    species_list <- paste(species_list,",")
+  }
+}
+
+
+
+
+
+
 page <- gsub("insert_medias",medias,page)
-write(page,file = "~/webprojects/nature_videos/index.html")
+page <- gsub("insert_update_date",Sys.Date(),page)
+page <- gsub("insert_species_list",species_list,page)
+write(page,file = "~/describewild/index.html")
  
 ```
 

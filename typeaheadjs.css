@@ -50,8 +50,7 @@ span.twitter-typeahead .disabled.tt-suggestion:focus, span.twitter-typeahead .di
     background-color: transparent;
     background-image: none;
     filter: "progid:DXImageTransform.Microsoft.gradient(enabled = false)"; }
-span.twitter-typeahead {
-  width: 100%; }
+span.twitter-typeahead { display: flex; }
   .input-group span.twitter-typeahead {
     display: block !important; }
     .input-group span.twitter-typeahead .tt-menu {

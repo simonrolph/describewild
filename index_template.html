@@ -29,15 +29,10 @@
 
 </head>
 
-<body style="">
+<body >
 
     <header>
-        <div class="navbar navbar-dark bg-dark box-shadow">
-            <div class="container d-flex justify-content-between">
-                <a href="#" class="navbar-brand d-flex align-items-center">Home
-          </a>
-            </div>
-        </div>
+
     </header>
 
     <main role="main">
@@ -56,77 +51,76 @@
 
         <div class="container" id="vid-filtering">
 
-            <!-- Filters -->
+            <!-- Filters -->      
             
-                    <div class="form-group">
-                        <label for="search">Search for keywords</label>
-                        <input type="search" class="form-control search" id="search" placeholder="cornish wildflowers, night jars, naturewatch etc.">
-                        <br>
-                        
-                        <label>Filter by taxonomic groups</label>
-                        <div class="btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-light active" id="fil1" taxon="All">
-                        <input type="radio" name="taxons" autocomplete="off" checked> All
-                    </label>
-                            <label class="btn btn-light" id="fil2" taxon="Plants">
-                        <input type="radio" name="taxons" autocomplete="off" > Plants 
-                    </label>
-                            <label class="btn btn-light" id="fil3" taxon="Birds">
-                        <input type="radio" name="taxons" autocomplete="off" > Birds
-                    </label>
-                            <label class="btn btn-light" id="fil4" taxon="Mammals">
-                        <input type="radio" name="taxons" autocomplete="off" > Mammals 
-                    </label>
-                            <label class="btn btn-light" id="fil5" taxon="Fish">
-                        <input type="radio" name="taxons" autocomplete="off" > Fish 
-                    </label>
-                            <label class="btn btn-light" id="fil6" taxon="Invertebrates">
-                        <input type="radio" name="taxons" autocomplete="off" > Invertebrates 
-                    </label>
-                            <label class="btn btn-light" id="fil7" taxon="Reptiles">
-                        <input type="radio" name="taxons" autocomplete="off" > Reptiles 
-                    </label>
-                            <label class="btn btn-light" id="fil8" taxon="Amphibians">
-                        <input type="radio" name="taxons" autocomplete="off" > Amphibians 
-                    </label>
-                            <label class="btn btn-light" id="fil9" taxon="Fungi and Lichens">
-                        <input type="radio" name="taxons" autocomplete="off" > Fungi and Lichens 
-                    </label>
-                        </div>
-                        
-                        <br>
-                        <label for="search2">Search by species</label>
-                        <input class="typeahead form-control" id="search2" type="text">
 
-                        <br>
+            
+            
+            
+
+
+            
+            <div class="row">
+                <div class="col-sm-4">
+                                <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"><i class="fa fa-search" aria-hidden="true"></i></span>
+              </div>
+              <input type="search" class="form-control search typeahead" id="search" placeholder="Search...">
+            </div>
+                    <div style="height:296px;overflow:auto;">
+                    <div class="form-group">
+            
                         <label>Filter by format</label>
                         <div class="btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-light active" id="2fil1" media="All">
+                            <label class="btn btn-light active btn-sm" id="2fil1" media="All">
                         <input type="radio" name="media" autocomplete="off" checked> All
                     </label>
-                            <label class="btn btn-light" id="2fil2" media="V">
+                            <label class="btn btn-light btn-sm" id="2fil2" media="V">
                         <input type="radio" name="media" autocomplete="off" ><i class="fa fa-video-camera" aria-hidden="true"></i> Videos 
                     </label>
-                            <label class="btn btn-light" id="2fil3" media="P">
+                            <label class="btn btn-light btn-sm" id="2fil3" media="P">
                         <input type="radio" name="media" autocomplete="off" ><i class="fa fa-headphones" aria-hidden="true"></i> Podcasts
                     </label>
-                            <label class="btn btn-light" id="2fil4" media="B">
+                            <label class="btn btn-light btn-sm" id="2fil4" media="B">
                         <input type="radio" name="media" autocomplete="off" ><i class="fa fa-font" aria-hidden="true"></i> Blog Posts
                     </label>
                         </div>
-
-                        <br>
-                        <div class="btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-light sort" data-sort="mins">
-                        <input type="checkbox" id="search-by-length" autocomplete="off"> <i class="fa fa-clock-o" aria-hidden="true"></i> Sort by length
+            </div>
+                    <div class="form-group">
+                        
+                        <label for="togglers">Filter by taxonomic groups</label>
+                        <div id="togglers" class="btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light active btn-sm" id="fil1" taxon="All">
+                        <input type="radio" name="taxons" autocomplete="off" checked> All
+                    </label>
+                            <label class="btn btn-light btn-sm" id="fil2" taxon="Plants">
+                        <input type="radio" name="taxons" autocomplete="off" > Plants 
+                    </label>
+                            <label class="btn btn-light btn-sm" id="fil3" taxon="Birds">
+                        <input type="radio" name="taxons" autocomplete="off" > Birds
+                    </label>
+                            <label class="btn btn-light btn-sm" id="fil4" taxon="Mammals">
+                        <input type="radio" name="taxons" autocomplete="off" > Mammals 
+                    </label>
+                            <label class="btn btn-light btn-sm" id="fil5" taxon="Fish">
+                        <input type="radio" name="taxons" autocomplete="off" > Fish 
+                    </label>
+                            <label class="btn btn-light btn-sm" id="fil6" taxon="Invertebrates">
+                        <input type="radio" name="taxons" autocomplete="off" > Invertebrates 
+                    </label>
+                            <label class="btn btn-light btn-sm" id="fil7" taxon="Reptiles">
+                        <input type="radio" name="taxons" autocomplete="off" > Reptiles 
+                    </label>
+                            <label class="btn btn-light btn-sm" id="fil8" taxon="Amphibians">
+                        <input type="radio" name="taxons" autocomplete="off" > Amphibians 
+                    </label>
+                            <label class="btn btn-light btn-sm" id="fil9" taxon="Fungi and Lichens">
+                        <input type="radio" name="taxons" autocomplete="off" > Fungi and Lichens 
                     </label>
                         </div>
-
-                    </div>
-            
-            <hr>
-            <div class="row">
-                <div class="col-sm-4">
+            </div>
+                        </div>
                     <span id="preview-card"></span>
                 </div>
                 <div class="col-sm-8">
@@ -137,7 +131,14 @@
 
             <hr>
 
+            <div class="form-group">
+                        <div class="btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-light sort btn-sm" data-sort="mins">
+                        <input type="checkbox" id="search-by-length" autocomplete="off"> <i class="fa fa-clock-o" aria-hidden="true"></i> Sort by length
+                    </label>
+                        </div>
 
+                    </div>
 
 
 
@@ -195,7 +196,7 @@
             <p class="float-right">
                 <a href="#">Back to top</a>
             </p>
-            <p>A project by <a href="http://simonrolph.me.uk/" target="_blank">Simon Rolph</a>. Code for this website on my <a href="https://github.com/simonrolph/describewild" target="_blank">Github</a>.</p>
+            <p>A project by <a href="http://simonrolph.me.uk/" target="_blank">Simon Rolph</a>. Code for this site is on my <a href="https://github.com/simonrolph/describewild" target="_blank">Github</a>. Page last updated: insert_update_date.</p>
         </div>
     </footer>
 
@@ -244,15 +245,7 @@
             };
         };
 
-        var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-            'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-            'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-            'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-            'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-            'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-            'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-            'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-            'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+        var states = [insert_species_list
         ];
 
         $('.typeahead').typeahead({
@@ -263,6 +256,11 @@
             name: 'states',
             source: substringMatcher(states)
         });
+    </script>
+    
+    <!-- this script filters the js list for what's in the search box when you click the typeahead suggestion -->
+    <script>
+        $('.tt-menu').click( function () {vidFiltering.search($("#search").val());});
     </script>
 
     <script>
