@@ -132,7 +132,7 @@
                             <div class="card-body">
                                 <p hidden class="media">insert_format</p>
                                 <p hidden class="date">insert_date</p>
-                                <p hidden class="latlong">insert_lat,insert_long,insert_title,insert_creator_name,insert_format,insert_taxons,insert_length</p>
+                                <p hidden class="latlong">insert_lat,insert_long,insert_title,insert_creator_name,insert_format,insert_taxons,insert_length,insert_media_url,insert_image_url,insert_creator_id</p>
                                 <div class="card-text">
                                     <p class="vid-title" ><b><a href="insert_media_url" data-lity>insert_title</a></b> </p>
                                     <p class='vid-title'><small><b>insert_ser_url (insert_episode_num/insert_num_of_eps)</b> </small></p>
@@ -232,20 +232,23 @@
                 marker = new L.Marker([latlong[0], latlong[1]], {
                     icon: eval(latlong[4])
                 });
-                marker.bindPopup("<b>" + latlong[2] + "</b><br>By " + latlong[3] + " - " + latlong[5] + " - " + latlong[6] + 'mins <br><a href="#' + latlong[2] + '"><button type="button" class="btn btn-light btn-sm">Jump to this</button></a>');
+                marker.bindPopup("<a href='"+latlong[7]+"' data-lity><div style='width:200px;'><img class='img-fluid' src='"+ latlong[8]+"'><br><b>" + latlong[2] + "</b></a><br><a href='creators/"+latlong[9]+".html'>By " + latlong[3] + "</a> - "  + latlong[6] + 'mins</div>');
                 marker.title = latlong[2];
-                marker.on('mouseover', function (e) {
-                    this.openPopup();
-                });
-                marker.on('mouseout', function (e) {
-                    this.closePopup();
-                });
                 markersLayer.addLayer(marker);
             });
             mymap.addLayer(markersLayer);
         };
         updatemap();
     </script>
+        <!--
+in case i need it later
+                marker.on('mouseover', function (e) {
+                    this.openPopup();
+                });
+                marker.on('mouse leave or something', function (e) {
+                    this.closePopup();
+                });
+-->
     <script>
         x = 5;
         size_li = $("#myList li").size();

@@ -179,12 +179,8 @@ make author page
 
 media_data <- arrange(media_data,series_id,episode_num,desc(date))
 
-
-
-new_series <- ""
-
-
 for (i in creators_data$id){
+  new_series <- ""
   page <- readLines("creator_template.html")
   page <- paste(page, collapse = '')
   
@@ -192,6 +188,26 @@ for (i in creators_data$id){
   page <- gsub( " *\\START.*?\\END *", "insert_medias",page)
   medias <- ""
   this_creator <- filter(creators_data, id == i)
+  
+  media_links <- ""
+  
+  #make youtube button
+  if (!is.na(this_creator$youtube)){
+    media_links <- paste0(media_links,'<div class="g-ytsubscribe" data-channelid="',this_creator$youtube,'" data-layout="default" data-count="default"></div>')
+  }
+  
+  #make twitter button
+  if (!is.na(this_creator$twitter)){
+    media_links <- paste0(media_links,' <a href="https://twitter.com/',this_creator$twitter,'" class="twitter-follow-button" data-show-count="false">Follow</a>')
+  }
+  
+  print(media_links)
+  
+  if (media_links != ""){
+    page <- gsub("insert_media_links",media_links,page)
+  } else {
+    page <- gsub("insert_media_links","",page)
+  }
   
   # sub creator bio stuff
   for (ii in 1:ncol(this_creator)){
