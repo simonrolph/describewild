@@ -19,9 +19,13 @@ make new columns
 wildfilm <- gs_title("Wildfilm spreadsheet")
 media_data <- wildfilm %>% gs_read(ws="media",col_types = cols(species = col_character()))
 media_data <- filter(media_data,complete == "Y")
+media_data <- arrange(media_data,desc(date))
 
 creators_data <- wildfilm %>% gs_read(ws="creators")
+creators_data <- filter(creators_data,!is.na(creator_name))
+
 species_data <- wildfilm %>% gs_read(ws="species")
+species_data <- filter(species_data,!is.na(common_name))
 series_data <- wildfilm %>% gs_read(ws="series")
 
 # make data more readable, add new columns etc
@@ -72,7 +76,7 @@ make homepage
 
 
 
-page <- readLines("~/describewild/index_template.html")
+page <- readLines("index_template.html")
 page <- paste(page, collapse = '')
   
 media_template <- gsub(".*START|END.*", "", page)
@@ -117,6 +121,7 @@ for(i in 1:nrow(media_data)){
            species_data$scientific_name[ii_now],
            this_species)
       
+      # add a comma or a full stop
       if (ii != length(medias_species)) {
         this_species <- paste(this_species,", ",sep = "")
       } else {
@@ -148,9 +153,15 @@ for(i in 1:nrow(media_data)){
 species_list <- ""
 
 for (i in 1:nrow(species_data)){
-  species_list <- paste(species_list,'"',species_data$common_name[i]," (",species_data$scientific_name[i],')"',sep = "")
+  species_list <- paste(species_list,'"',species_data$common_name[i]," (<i>",species_data$scientific_name[i],'</i>)"',sep = "")
   
-  if (i < nrow(species_data)){
+  species_list <- paste(species_list,",")
+
+}
+
+for (i in 1:nrow(creators_data)){
+  species_list <- paste(species_list,'"',creators_data$creator_name[i],'"',sep = "")
+  if (i < nrow(creators_data)){
     species_list <- paste(species_list,",")
   }
 }
@@ -158,22 +169,23 @@ for (i in 1:nrow(species_data)){
 page <- gsub("insert_medias",medias,page)
 page <- gsub("insert_update_date",Sys.Date(),page)
 page <- gsub("insert_species_list",species_list,page)
-write(page,file = "~/describewild/index.html")
+write(page,file = "index.html")
  
 ```
 
-
+make author page
 
 ```{r}
-media_data <- arrange(media_data,series_id,episode_num,date)
 
-creators_data <- filter(creators_data,!is.na(creator_name))
+media_data <- arrange(media_data,series_id,episode_num,desc(date))
+
+
 
 new_series <- ""
 
 
 for (i in creators_data$id){
-  page <- readLines("~/describewild/creator_template.html")
+  page <- readLines("creator_template.html")
   page <- paste(page, collapse = '')
   
   media_template <- gsub(".*START|END.*", "", page)
@@ -188,7 +200,12 @@ for (i in creators_data$id){
       page <- gsub(paste("insert",field,sep = "_"),
                    this_creator[ii],
                    page)
+    } else {
+      page <- gsub(paste("insert",field,sep = "_"),
+                   "",
+                   page)
     }
+    
   }
   
   
@@ -250,7 +267,7 @@ for (i in creators_data$id){
     
     if (!is.na(media_data$series[j])){
       if (new_series != media_data$series[j]){
-        medias <- paste0(medias,"<a id=",media_data$series_id[j],"><h3>",media_data$series[j],"</h3></a>")
+        medias <- paste0(medias,"<a id=",media_data$series_id[j],"><h3>",media_data$series[j]," <small>(",media_data$num_of_eps[j]," Episodes)</small></h3></a><p>",media_data$series_description[j],"</p>")
         new_series<- media_data$series[j]
       }
     }
@@ -259,7 +276,7 @@ for (i in creators_data$id){
   
   page <- gsub("insert_medias",medias,page)
   page <- gsub("insert_update_date",Sys.Date(),page)
-  write(page,file = paste0("~/describewild/creators/",this_creator$id,".html"))
+  write(page,file = paste0("creators/",this_creator$id,".html"))
   
 }
 

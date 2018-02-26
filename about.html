@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+    <title>Describe Wild - Homepage</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../typeaheadjs.css">
+    <!-- font awesome -->
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.css">
+    <!-- lightbox - lity -->
+    <link href="../lity-2.3.0/dist/lity.css" rel="stylesheet">
+    <!-- leaflet css -->
+    <link href="../leaflet/leaflet.css" rel="stylesheet">
+    <link href="../Leaflet.markercluster-1.3.0/dist/MarkerCluster.css" rel="stylesheet">
+    <link href="../Leaflet.markercluster-1.3.0/dist/MarkerCluster.Default.css" rel="stylesheet"> </head>
+
+<body>
+    <header> </header>
+    <main role="main">
+        
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"><div class="container"> <a class="navbar-brand" href="../index.html">Describe Wild</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    
+                    <ul class="navbar-nav">
+                        <li class="nav-item"> <a class="nav-link" href="index.html">Explore</a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="tutorials.html">Tutorials</a> </li>
+                        <li class="nav-item"> <a class="nav-link active" href="about.html">About</a> </li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+            <br>
+        <br>
+        <br>
+        <div class="container">
+            <h1>About Describe Wild</h1>
+            <p>Hi, welcome to Describe Wild!</p>
+            
+            <h3>Introduction</h3>
+
+            <p>Describe Wild is a hub for discovering videos made by people like you about nature. It’s a place for wildlife film-makers and science communicators to showcase their work and get exposure for their hard work. It’s something I’ve had in the back of my mind for a while but now I’m actually making it.</p>
+
+            <p>Describe Wild is not intended as a replacement platform for Youtube, podcast platforms or blogging platforms. Describe Wild supplements these platforms by making it easy to search by ecological context such as location and taxonomy. It’s a human-curated library of content, as opposed to being at the mercy of a “recommended for you” algorithm. Therefore, there are minimum requirements for content to be featured on Describe Wild. Videos have to be edited together for a cohesive piece of media and offer interpretation about the topic - as opposed to a video of a couple of random shots of a bird set to royalty-free ukulele music.</p>
+
+            <p>Here a couple of examples that illustrate the sort of media that will/won’t be on Describe Wild and the reasoning behind it.</p>
+            
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="w-50" style="text-align: center;"><i class="fa fa-times" aria-hidden="true"></i> Not on Describe Wild</th>
+                  <th class="w-50" style="text-align: center;"><i class="fa fa-check" aria-hidden="true"></i> On Describe Wild</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td ><style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/LRuGzTOvigg' frameborder='0' allowfullscreen></iframe></div>
+                      <p>This is documentary by a big budget production company, they don't need exposure.</p></td>
+                  <td><style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/7WaqjBS7wBE' frameborder='0' allowfullscreen></iframe></div>
+                      <p>A video by NatureWatch, a student run show at the Penryn Campus in Cornwall.</p></td>
+                </tr>
+                <tr>
+                  <td ><style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/LhnIkJ1JSCE' frameborder='0' allowfullscreen></iframe></div>
+                      <p>These are just some random shots of birds, whilst quite pretty, it offers no real interpretation.</p></td>
+                  <td><style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style><div class='embed-container'><iframe src='https://www.youtube.com/embed/SSNWT992ASk' frameborder='0' allowfullscreen></iframe></div><p>This video has talking to camera and narration giving interpretation about the birds in the nvideo.</p></td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <h3>How does it work? (at the moment)</h3>
+
+            <p>The back-end of the website is a google sheet that stores all the data, and makes it easy for contributors to add and edit the information about their content. I’ve written some R code that takes the google spreadsheet and generates the static HTML pages that you see here. There’s also a fair few bits of javascript that are making it all whizzy and cool - more info on my github.</p>
+
+            <h3>Features</h3>
+            <ul>
+                <li>Explorable map of media</li>
+                <li>Ecologically relevant searching</li>
+                <li>Pages for creators </li>
+            </ul>
+            
+            <h3>Roadmap</h3>
+
+            <h5>Phase 1</h5>
+
+            <p>What you see on this website is a quite basic prototype; my aim is to get the core functionality up and running. Once this works I’ll be inviting people to put their content onto the site. This will allow me to see how well the site functions with lots of videos on the homepage. This will also be able to help me get feedback from creators and from people using the site to find videos.</p>
+
+            <p>At this point I’ll start to reconsider my current page-generating code and whether there are any more elegant solutions, using something like R markdown and blogdown to generate pages. At some point I’ll settle on a name for the project and buy a domain so it’s not just on a github.io domain.</p>
+
+            <h5>Phase 2</h5>
+
+            <p>When it’s stable and functioning i’ll start to add more features, maybe a more comprehensive species search, better ways to find related media by closely related species. If we get lots of media on the site we may need different ways to discover media maybe do a monthly blog post about our favourite new media on the site. Podcast of the week, you know, that sort of thing. If needed, I’ll start to bring in volunteers to curate the media so I can focus on developing the site with what little time I have...</p>
+
+            <h5>Phase 3</h5>
+
+            <p>If Describe Wild is successful I’ll consider redeveloping the site as a comprehensive web application (eg. not based on google sheets!)</p> 
+
+            <h5>Possible sister projects</h5>
+
+            <p>If this formula is successful I’m sure it could be applied to different fields, for example geography, or a general STEM scicomm. But first things first, I’ll get one site up and running!</p>
+
+
+        </div>
+        <br>
+    </main>
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right"> <a href="#">Back to top</a> </p>
+            <p>A project by <a href="http://simonrolph.me.uk/" target="_blank">Simon Rolph</a>. Code for this site is on my <a href="https://github.com/simonrolph/describewild" target="_blank">Github</a>.</p>
+        </div>
+    </footer>
+    <!-- jquery -->
+    <script src="../jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- lity -->
+    <script src="../lity-2.3.0/vendor/jquery.js"></script>
+    <script src="../lity-2.3.0/dist/lity.js"></script>
+    <!-- youtube subscribe button javascript (doesn't work if using list.js)-->    <script src="https://apis.google.com/js/platform.js"></script>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</body>
+
+</html>
