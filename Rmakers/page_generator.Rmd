@@ -1,9 +1,9 @@
 ```{r}
-install.packages("googlesheets")
+#install.packages("googlesheets")
 library(googlesheets)
 
-install.packages("tidyverse")
-install.packages("readr")
+#install.packages("tidyverse")
+#install.packages("readr")
 library(tidyverse)
 library(dplyr)
 library("curl")
@@ -13,16 +13,25 @@ gs_ls()
 
 ```
 
-
+make new columns
 ```{r}
 # read in all the google sheets data
 wildfilm <- gs_title("Wildfilm spreadsheet")
-media_data <- wildfilm %>% gs_read(ws="media")
-species_data <- na.omit(wildfilm %>% gs_read(ws="species"))
+media_data <- wildfilm %>% gs_read(ws="media",col_types = cols(species = col_character()))
+media_data <- filter(media_data,complete == "Y")
+
+creators_data <- wildfilm %>% gs_read(ws="creators")
+species_data <- wildfilm %>% gs_read(ws="species")
+series_data <- wildfilm %>% gs_read(ws="series")
 
 # make data more readable, add new columns etc
 yt_image_template <- c("https://i1.ytimg.com/vi/insert_video_id/mqdefault.jpg")
 yt_media_template <- c("//www.youtube.com/watch?v=insert_video_id")
+
+media_data <- left_join(media_data,series_data, by=c("series_id"="id"))
+media_data <- left_join(media_data,creators_data, by=c("creator_id"="id"))
+
+media_data <- mutate(media_data,ser_url = paste0("<a href='creators/",creator_id,".html#",series_id,"'>",series,"</a>"))
 
 #videos
 for(i in 1:nrow(media_data)){
@@ -40,7 +49,27 @@ for(i in 1:nrow(media_data)){
     media_data$media_icon[i] <- "font"
     media_data$media_type[i] <- "Blog post"
   }
+  
+  the_date <- unlist(strsplit(media_data$date[i],"/"))
+  
+  media_data$t_date[i] <- paste(month.abb[as.numeric(the_date[2])],the_date[1])
+  
+  if (grepl("NA", media_data$ser_url[i])){
+    media_data$ser_url[i] <- NA
+  }
+  
 }
+
+
+
+
+
+```
+
+
+make homepage
+```{r}
+
 
 
 page <- readLines("~/describewild/index_template.html")
@@ -54,12 +83,63 @@ medias <- ""
 for(i in 1:nrow(media_data)){
   media_temp <- media_template
   
+  #do all the normal fields, as long as it's not NA
   for (ii in 1:ncol(media_data)){
     field <- colnames(media_data)[ii]
-    media_temp <- gsub(paste("insert",field,sep = "_"),
-         media_data[i,ii],
-         media_temp)
+    if (!is.na(media_data[i,ii])){
+      media_temp <- gsub(paste("insert",field,sep = "_"),
+           media_data[i,ii],
+           media_temp)
+    }
   }
+  
+  #remove seriesinformation if it's not actually for a series
+  media_temp <- 
+    gsub("<p class='vid-title'><small><b>insert_ser_url \\(insert_episode_num/insert_num_of_eps\\)</b> </small></p>",
+       "",
+       media_temp)
+  
+  # species lists
+  medias_species <- unlist(strsplit(as.character(media_data$species[i]),","))
+  species_html <- "Featuring: "
+  species_template <- "<a href='https://en.wikipedia.org/wiki/insert_scientific_name' data-lity>insert_common_name (<i>insert_scientific_name</i>)</a>"
+    
+  if (!is.na(medias_species)){
+    
+    
+    for (ii in 1:length(medias_species)){
+      ii_now <- as.numeric(medias_species)[ii]
+      this_species <- species_template
+      this_species <- gsub("insert_common_name",
+           species_data$common_name[ii_now],
+           this_species)
+      this_species <- gsub("insert_scientific_name",
+           species_data$scientific_name[ii_now],
+           this_species)
+      
+      if (ii != length(medias_species)) {
+        this_species <- paste(this_species,", ",sep = "")
+      } else {
+        this_species <- paste(this_species,".",sep = "")
+      }
+      
+      species_html <- paste(species_html,this_species,sep = "")
+    }
+    
+    media_temp <- gsub("insert_list_species",
+       species_html,
+       media_temp)
+  } else {
+    media_temp <- gsub("<p><small>insert_list_species</small></p>",
+       "",
+       media_temp)
+  }
+  
+  
+  
+  
+  
+
   
   medias <- paste(medias,media_temp)
 }
@@ -75,15 +155,123 @@ for (i in 1:nrow(species_data)){
   }
 }
 
-
-
-
-
-
 page <- gsub("insert_medias",medias,page)
 page <- gsub("insert_update_date",Sys.Date(),page)
 page <- gsub("insert_species_list",species_list,page)
 write(page,file = "~/describewild/index.html")
  
 ```
+
+
+
+```{r}
+media_data <- arrange(media_data,series_id,episode_num,date)
+
+creators_data <- filter(creators_data,!is.na(creator_name))
+
+new_series <- ""
+
+
+for (i in creators_data$id){
+  page <- readLines("~/describewild/creator_template.html")
+  page <- paste(page, collapse = '')
+  
+  media_template <- gsub(".*START|END.*", "", page)
+  page <- gsub( " *\\START.*?\\END *", "insert_medias",page)
+  medias <- ""
+  this_creator <- filter(creators_data, id == i)
+  
+  # sub creator bio stuff
+  for (ii in 1:ncol(this_creator)){
+    field <- colnames(this_creator)[ii]
+    if (!is.na(this_creator[ii])){
+      page <- gsub(paste("insert",field,sep = "_"),
+                   this_creator[ii],
+                   page)
+    }
+  }
+  
+  
+  
+  for(j in (1:nrow(media_data))[media_data$creator_id == i]){
+
+    media_temp <- media_template
+    
+    #do all the normal fields, as long as it's not NA
+    for (ii in 1:ncol(media_data)){
+      field <- colnames(media_data)[ii]
+      if (!is.na(media_data[j,ii])){
+        media_temp <- gsub(paste("insert",field,sep = "_"),
+                           media_data[j,ii],
+                           media_temp)
+      }
+    }
+    
+    # species lists
+    medias_species <- unlist(strsplit(as.character(media_data$species[j]),","))
+    species_html <- "Featuring: "
+    species_template <- "<a href='https://en.wikipedia.org/wiki/insert_scientific_name' data-lity>insert_common_name (<i>insert_scientific_name</i>)</a>"
+    
+    if (!is.na(medias_species)){
+      
+      
+      for (ii in 1:length(medias_species)){
+        ii_now <- as.numeric(medias_species)[ii]
+        this_species <- species_template
+        this_species <- gsub("insert_common_name",
+                             species_data$common_name[ii_now],
+                             this_species)
+        this_species <- gsub("insert_scientific_name",
+                             species_data$scientific_name[ii_now],
+                             this_species)
+        
+        if (ii != length(medias_species)) {
+          this_species <- paste(this_species,", ",sep = "")
+        } else {
+          this_species <- paste(this_species,".",sep = "")
+        }
+        
+        species_html <- paste(species_html,this_species,sep = "")
+      }
+      
+      media_temp <- gsub("insert_list_species",
+                         species_html,
+                         media_temp)
+    } else {
+      media_temp <- gsub("<p><small>insert_list_species</small></p>",
+                         "",
+                         media_temp)
+    }
+    
+    
+    
+    
+    
+    
+    if (!is.na(media_data$series[j])){
+      if (new_series != media_data$series[j]){
+        medias <- paste0(medias,"<a id=",media_data$series_id[j],"><h3>",media_data$series[j],"</h3></a>")
+        new_series<- media_data$series[j]
+      }
+    }
+    medias <- paste(medias,media_temp)
+  }
+  
+  page <- gsub("insert_medias",medias,page)
+  page <- gsub("insert_update_date",Sys.Date(),page)
+  write(page,file = paste0("~/describewild/creators/",this_creator$id,".html"))
+  
+}
+
+
+
+
+
+
+
+```
+
+
+
+
 
