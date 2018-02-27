@@ -120,9 +120,9 @@
                 <button class="btn btn-light sort btn-sm" data-sort="date" id="search-by-date"><i class="fa fa-calendar" aria-hidden="true"></i> Sort by date</button>
                 <button class="btn btn-light sort btn-sm" data-sort="mins" id="search-by-length"><i class="fa fa-clock-o" aria-hidden="true"></i> Sort by length</button>
             </div>
-            <div class="card-columns">
-                <ul class="list list-unstyled" id="myList"> START
-                    <li> <span class="badge badge-secondary"><i class="fa fa-insert_media_icon" aria-hidden="true"></i> insert_media_type</span> <span class="badge badge-secondary"><span class="mins">insert_length</span> mins</span> <span class="badge badge-secondary"><span>insert_t_date</span></span> <span class="badge badge-secondary"><span class="taxGroups">insert_taxons</span></span>
+            <div >
+                <ul class="row list list-unstyled" id="myList"> START
+                    <li class="col-sm-4"> <span class="badge badge-secondary"><i class="fa fa-insert_media_icon" aria-hidden="true"></i> insert_media_type</span> <span class="badge badge-secondary"><span class="mins">insert_length</span> mins</span> <span class="badge badge-secondary"><span>insert_t_date</span></span> <span class="badge badge-secondary"><span class="taxGroups">insert_taxons</span></span>
                         <div class="card mb-4 box-shadow" id="insert_title">
                             <div class="video-thumb">
                                 <a href="insert_media_url" data-lity> <img class="card-img-top img-fluid" src="insert_image_url">
@@ -250,12 +250,12 @@ in case i need it later
                 });
 -->
     <script>
-        x = 5;
+        x = 50;
         size_li = $("#myList li").size();
 
         function updateloadmore() {
             nvis = vidFiltering.visibleItems.length;
-            x = 5;
+            x = 50;
             $('#myList li').not(':lt(' + x + ')').hide();
             $('#myList li:lt(' + x + ')').show();
             if (nvis <= x) {
