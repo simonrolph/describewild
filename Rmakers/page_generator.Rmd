@@ -99,7 +99,7 @@ for(i in 1:nrow(media_data)){
   
   #remove seriesinformation if it's not actually for a series
   media_temp <- 
-    gsub("<p class='vid-title'><small><b>insert_ser_url \\(insert_episode_num/insert_num_of_eps\\)</b> </small></p>",
+    gsub("<p class='vid-title'><small><b>Series: insert_ser_url \\(insert_episode_num/insert_num_of_eps\\)</b> </small></p>",
        "",
        media_temp)
   
