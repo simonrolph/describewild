@@ -16,7 +16,7 @@ gs_ls()
 make new columns
 ```{r}
 # read in all the google sheets data
-wildfilm <- gs_title("Wildfilm spreadsheet")
+wildfilm <- gs_title("Describe Wild Back-end")
 media_data <- wildfilm %>% gs_read(ws="media",col_types = cols(species = col_character()))
 media_data <- filter(media_data,complete == "Y")
 media_data <- arrange(media_data,desc(date))
@@ -283,7 +283,7 @@ for (i in creators_data$id){
     
     if (!is.na(media_data$series[j])){
       if (new_series != media_data$series[j]){
-        medias <- paste0(medias,"<a id=",media_data$series_id[j],"><h3>",media_data$series[j]," <small>(",media_data$num_of_eps[j]," Episodes)</small></h3></a><p>",media_data$series_description[j],"</p>")
+        medias <- paste0(medias,"<a class='anchor' id=",media_data$series_id[j],"></a><h3>",media_data$series[j]," <small>(",media_data$num_of_eps[j]," Episodes)</small></h3><p>",media_data$series_description[j],"</p>")
         new_series<- media_data$series[j]
       }
     }
